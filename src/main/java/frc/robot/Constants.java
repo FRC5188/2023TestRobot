@@ -12,4 +12,8 @@ package frc.robot;
  * <p>It is advised to statically import this class (or one of its inner classes) wherever the
  * constants are needed, to reduce verbosity.
  */
-public final class Constants {}
+public final class Constants {
+    public static final double QUICK_TURN_DEADBAND = 0.05;
+    public static final double QUICK_TURN_MULTIPLIER = 0.75;
+    public static final double ARCADE_DRIVE_DEADBAND = 0.025;
+}
