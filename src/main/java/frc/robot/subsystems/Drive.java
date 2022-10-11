@@ -9,7 +9,7 @@ import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX;
 import frc.robot.Constants;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
-public class driveTrain extends SubsystemBase {
+public class Drive extends SubsystemBase {
 
     // Declaring our four motors for the wheels
     WPI_TalonFX leftPrimary;
@@ -18,7 +18,7 @@ public class driveTrain extends SubsystemBase {
     WPI_TalonFX rightSecondary;
 
     /** Creates a new driveTrain. */
-    public driveTrain() {
+    public Drive() {
         // Initializing our motors
         leftPrimary = new WPI_TalonFX(0);
         leftSecondary = new WPI_TalonFX(0);
