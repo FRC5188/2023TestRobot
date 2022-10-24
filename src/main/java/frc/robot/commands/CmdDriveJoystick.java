@@ -27,6 +27,7 @@ public class CmdDriveJoystick extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
+    System.out.println("throttle: " + _throttle.getAsDouble() + " rotate: " + _rotate.getAsDouble());
     _driveSubsystem.arcadeDrive(_throttle.getAsDouble(), _rotate.getAsDouble());
   }
 

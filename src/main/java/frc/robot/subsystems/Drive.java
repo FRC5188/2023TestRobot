@@ -20,10 +20,10 @@ public class Drive extends SubsystemBase {
     /** Creates a new driveTrain. */
     public Drive() {
         // Initializing our motors
-        leftPrimary = new WPI_TalonFX(0);
-        leftSecondary = new WPI_TalonFX(0);
-        rightPrimary = new WPI_TalonFX(0);
-        rightSecondary = new WPI_TalonFX(0);
+        leftPrimary = new WPI_TalonFX(1);
+        leftSecondary = new WPI_TalonFX(2);
+        rightPrimary = new WPI_TalonFX(3);
+        rightSecondary = new WPI_TalonFX(4);
 
         // Making the back motors follow the front motors
         leftSecondary.follow(leftPrimary);
@@ -47,17 +47,22 @@ public class Drive extends SubsystemBase {
 
     }
 
-    
     public void setMotorPower(double leftMotorPower, double rightMotorPower) {
         // sets motor power , input of two doubles
         rightPrimary.set(rightMotorPower);
         leftPrimary.set(leftMotorPower);
     }
-    //Takes throttle and rotation, converts into motor power, sets motors
+
+    /**
+     * Takes throttle and rotation, converts into motor power, sets motors
+     * 
+     * @param throttle The value for moving forward/backward
+     * @param rotation The value for rotating cw and ccw
+     */
     public void arcadeDrive(double throttle, double rotation) {
         double rDrive;
         double lDrive;
-        //when going backwards, reverse rotation
+        // when going backwards, reverse rotation
         if (throttle < -Constants.ARCADE_DRIVE_DEADBAND) {
             rotation *= -1;
         }
