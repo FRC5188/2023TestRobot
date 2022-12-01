@@ -58,8 +58,10 @@ public class Drive extends SubsystemBase {
 
         // Initializing PID Controllers
         // Mind these are currently hard coded, change later.
-        _drivePID = new PIDController(0, 0, 0);
-        _rotatePID = new PIDController(0, 0, 0);
+        _drivePID = new PIDController(0.0265, 0, 0);
+        _drivePID.setTolerance(5);
+        _rotatePID = new PIDController(0.014, 0, 0);
+        _rotatePID.setTolerance(1);
 
         // Initializing Gyro
         _gyro = new AHRS();
@@ -161,15 +163,15 @@ public class Drive extends SubsystemBase {
      * @param minSpeed
      * @param resetEncoders
      */
-    public void rotatePIDinit(double distance, double maxSpeed, double minSpeed, boolean resetEncoders) {
+    public void rotatePIDinit(double heading, double maxSpeed, double minSpeed, boolean resetGyro) {
         // Check to reset if yes then reset.
-        if (resetEncoders) {
+        if (resetGyro) {
             resetEncoders();
         }
 
         // Tells the PID controller where you want to run to. Calculates how to get
         // where we want to go.
-        _rotatePID.setSetpoint(distance);
+        _rotatePID.setSetpoint(heading);
 
         // Store max and min.
         _rotateMaxSpeed = maxSpeed;

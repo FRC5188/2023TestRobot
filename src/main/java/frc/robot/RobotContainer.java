@@ -6,9 +6,12 @@ package frc.robot;
 
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
+import frc.robot.commands.CmdDriveDistance;
 import frc.robot.commands.CmdDriveJoystick;
+import frc.robot.commands.CmdDriveRotate;
 import frc.robot.subsystems.Drive;
 import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 
 /**
  * This class is where the bulk of the robot should be declared. Since
@@ -24,6 +27,8 @@ public class RobotContainer {
   private final Drive _driveSubsystem = new Drive();
 
   private XboxController _driveController = new XboxController(0);
+  private JoystickButton _driveAButton = new JoystickButton(_driveController, 1);
+  private JoystickButton _driveBButton = new JoystickButton(_driveController, 2);
 
   /**
    * The container for the robot. Contains subsystems, OI devices, and commands.
@@ -42,6 +47,9 @@ public class RobotContainer {
    * edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    */
   private void configureButtonBindings() {
+    _driveAButton.whenPressed(new CmdDriveDistance(_driveSubsystem, 50, 0.5, 0.1, true));
+    _driveBButton.whenPressed(new CmdDriveRotate(_driveSubsystem, 90, 0.5, 0.1, true));
+
     _driveSubsystem.setDefaultCommand(new CmdDriveJoystick(_driveSubsystem,
         () -> applyDeadband(_driveController.getLeftY(), 0.1),
         () -> applyDeadband(_driveController.getRightX(), 0.1)));
