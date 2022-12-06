@@ -79,9 +79,14 @@ public class Drive extends SubsystemBase {
         _leftSecondary.setNeutralMode(NeutralMode.Brake);
         _rightPrimary.setNeutralMode(NeutralMode.Brake);
         _rightSecondary.setNeutralMode(NeutralMode.Brake);
-
+        
     }
-
+    public void testMotor(){
+        _leftPrimary.set(0.5);
+        Thread.sleep(500);
+        _leftPrimary.set(-0.5);
+        Thread.sleep(500);
+    }
     @Override
     public void periodic() {
         // This method will be called once per scheduler run
